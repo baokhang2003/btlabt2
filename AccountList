@@ -1,0 +1,37 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package labt2;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author phankhang
+ */
+public class AccountList {
+    private ArrayList<Account>AccountList;
+    
+    public void  AddAccount(Account ac){
+        this.AccountList.add(ac);
+    }
+    
+    public  boolean TimKiemAccount(String Ma) { 
+        return this.AccountList.contains(Ma);
+        }
+    
+    public boolean xoaAccount(Account ac) {
+        return this.AccountList.remove(ac); 
+    }
+    
+    public int TongTaiKhoan(){
+        return count;
+    }
+    
+    public void Xuat(){
+        for(Account account : AccountList){
+            System.out.println(account);
+        }
+    }
+}

@@ -1,0 +1,128 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package labt2;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Scanner;
+
+/**
+ *
+ * @author phankhang
+ */
+public class Account {
+    public double sotien;
+    public int sotk;
+    public String tentk;
+    public String trangthai;
+    public double TienChuyen;
+    
+
+    Scanner sc = new Scanner(System.in);
+    
+    public Account() {
+    }
+
+    public Account(double sotien, int sotk, String tentk, String trangthai) {
+        this.sotien = sotien;
+        this.sotk = sotk;
+        this.tentk = tentk;
+        this.trangthai = trangthai;
+    }
+
+    public double getSotien() {
+        
+        return sotien;
+    }
+
+    public void setSotien(double sotien) {
+        this.sotien = sotien;
+    }
+
+    public int getSotk() {
+        return sotk;
+    }
+
+    public void setSotk(int sotk) {
+        this.sotk = sotk;
+    }
+
+    public String getTentk() {
+        return tentk;
+    }
+
+    public void setTentk(String tentk) {
+        this.tentk = tentk;
+    }
+
+    public String getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(String trangthai) {
+        this.trangthai = trangthai;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" + "sotien=" + sotien + ", sotk=" + sotk + ", tentk=" + tentk + ", trangthai=" + trangthai + '}';
+    }
+    
+    Locale local = new Locale("vi","vn");
+    NumberFormat formatter = NumberFormat.getCurrencyInstance(local);
+    
+    public double NapTien(double TienChuyen) {
+        double nap;
+        System.out.println("Nhap so tien ban ca nap: ");
+        nap = sc.nextDouble();
+        if(nap >= 0) {
+            sotien = nap + sotien;
+            NumberFormat currencyEN = NumberFormat.getCurrencyInstance(local);
+            String S1 = currencyEN.format(nap);
+            System.out.println("ban vua nap" + S1 + "vao tai khoan");
+        }else {
+            System.out.println("So tien ban nap vao khong hop le");
+        }
+        return nap;
+    }
+    
+    public double RutTien() {
+        double phi = 5;
+        double rut;
+        System.out.println("Nhap so tien rut: ");
+        rut = sc.nextDouble();
+        if(rut <= (sotien - phi)){
+            sotien = sotien - (rut + phi);
+            NumberFormat currencyEN = NumberFormat.getCurrencyInstance();
+            String S1 = currencyEN.format(rut);
+            System.out.println("Ban vua rut"+ S1 +"tu tai khoan va phi la 5$");
+        }else{
+            System.out.println("So tien rut khong hop le");
+            return RutTien();
+        }
+        return rut;
+    }
+        public void ChuyenTien(Account ac, double TienChuyen) {
+            if(this.sotien >= TienChuyen) {
+                this.sotien = TienChuyen;
+                ac.NapTien(TienChuyen);
+                System.out.println("Chuyen tien thanh cong");
+                System.out.println("So tien con lai trong tai khoan la: "+formatter.format(this.sotien));
+            }else{
+                System.out.println("Khong du so du de thuc hien giao dich");
+            }
+        }
+        public double DaoHan() {
+            double LaiSuat = 0.035;
+            sotien = sotien + sotien * LaiSuat;
+            NumberFormat currencyEN = NumberFormat.getCurrencyInstance();
+            String S1 = currencyEN.format(sotien);
+            System.out.println("Ban vua duoc"+ S1 +"tu dao han 1 thang");
+            return sotien;
+        }
+        
+    }
+            
+
